@@ -12,9 +12,9 @@
 				foreach($hasil->result() as $foto){
 				?>
 							<div class="col-md-3 ftco-animate">
-								<a href="gallery.html" class="gallery img d-flex align-items-center" style="background-image: url(<?php echo base_url(); ?>user/galeri/<?php echo $foto->foto_galeri; ?>);">
-									<div class="icon mb-4 d-flex align-items-center justify-content-center">
-									<span class="icon-search"></span>
+								<a href="" class="gallery img d-flex align-items-center" style="background-image: url(<?php echo base_url(); ?>user/galeri/<?php echo $foto->foto_galeri; ?>);">
+									<div class=" mb-4 d-flex align-items-center justify-content-center">
+									<!-- <span class="icon-search"></span> -->
 								</div>
 								</a>
 							</div>

@@ -4,7 +4,7 @@
     	<div class="container-wrap">
     		<div class="row no-gutters d-md-flex align-items-center">
     			<div class="col-md-6 d-flex align-self-stretch">
-    				<div id="map"></div>
+    				<img src="<?= base_url()?>user/logo/sanggar.jpg" alt="">
     			</div>
 	    		<div class="col-md-6 appointment ftco-animate">
                 <div class="col-md-12 mb-4">

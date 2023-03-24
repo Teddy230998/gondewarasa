@@ -3,7 +3,9 @@
       $profil_data = $this->db->query("SELECT * from profil");
       foreach ($profil_data->result() as $profil)
       { ?>
-    	<div class="one-half img" style="background-image: url(<?php echo base_url(); ?>user/slider/<?php echo $profil->foto_profil ?>);"></div>
+    	<div class="one-half img">
+        <img src="<?= base_url()?>user/logo/sanggar.jpg" alt="">
+      </div>
       
       <div class="one-half ftco-animate">
         <div class="heading-section ftco-animate ">
