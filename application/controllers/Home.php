@@ -72,6 +72,11 @@ class Home extends CI_Controller
 		$data = array("container" => "user/jasa", "footer" => "user/footer", "nav" => "user/nav");
 		$this->load->view("user/template", $data);
 	}
+	public function kelas()
+	{
+		$data = array("container" => "user/kelas", "footer" => "user/footer", "nav" => "user/nav");
+		$this->load->view("user/template", $data);
+	}
 	public function galeri()
 	{
 		$data = array("container" => "user/galeri", "footer" => "user/footer", "nav" => "user/nav");
