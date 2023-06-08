@@ -20,7 +20,7 @@
                   <div><a><span class="icon-calendar"> <?php echo $agenda->tgl_agenda ?> </span>| <?php echo $agenda->waktu_agenda ?> </a></div>
                   <div><a><?php echo $agenda->tempat_agenda ?></a></div>
                 </div>
-                <h3 class="heading mt-2"><a href="<?php echo base_url(); ?>home/bacaberita/" style="color: black"><?php echo $agenda->judul_agenda ?></a></h3>
+                <h3 class="heading mt-2"><a href="<?php echo base_url('home/bacaberita/' . $agenda->id_agenda); ?>" style="color: black"><?php echo $agenda->judul_agenda ?></a></h3>
                 <p><?php echo $agenda->isi_agenda ?></p>
               </div>
             </div>
