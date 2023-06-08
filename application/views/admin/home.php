@@ -14,8 +14,45 @@
   <div class="col-xl-12 col-lg-12">
     <div class="card shadow mb-4">
       <!-- Card Header - Dropdown -->
-      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-      <img src="<?= base_url()?>user/logo/sanggar.jpg">
+      <div class="card-header py-3">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="bg-info p-3 rounded-top">
+              <h2 class="text-white">1</h2>
+              <p class="text-white">Sewa Kostum</p>
+            </div>
+            <div>
+              <p class="text-center bg-dark rounded-bottom text-white">More Info</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="bg-success p-3 rounded-top">
+              <h2 class="text-white">1</h2>
+              <p class="text-white">Sewa Upacara Adat</p>
+            </div>
+            <div>
+              <p class="text-center bg-dark rounded-bottom text-white">More Info</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="bg-warning p-3 rounded-top">
+              <h2 class="text-white">1</h2>
+              <p class="text-white">Laporan Keuangan</p>
+            </div>
+            <div>
+              <p class="text-center bg-dark rounded-bottom text-white">More Info</p>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="bg-danger p-3 rounded-top">
+              <h2 class="text-white">1</h2>
+              <p class="text-white">User Login</p>
+            </div>
+            <div>
+              <p class="text-center bg-dark rounded-bottom text-white">More Info</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
