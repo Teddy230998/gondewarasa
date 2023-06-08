@@ -18,7 +18,7 @@
 				<li class="nav-item"><a href="<?php echo site_url() ?>kontak" class="nav-link">Kontak</a></li>
 				<li class="nav-item"><a href="<?php echo site_url() ?>produk" class="nav-link">Produk</a></li>
 				<li class="nav-item"><a href="<?php echo site_url() ?>jasa" class="nav-link">Jasa</a></li>
-				<li class="nav-item"><a href="<?php echo site_url() ?>kelas" class="nav-link">Kelas</a></li>
+				<li class="nav-item"><a href="<?php echo site_url() ?>kelas" class="nav-link">Kelas Tari</a></li>
 				<li class="nav-item"><a href="<?php echo site_url() ?>galeri" class="nav-link">Galeri</a></li>
 				<li class="nav-item"><a href="<?php echo site_url() ?>login" class="nav-link">Login</a></li>
 			</ul>

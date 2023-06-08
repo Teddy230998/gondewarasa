@@ -7,12 +7,12 @@
             
           </div>
         </div>
-    		<div class="row">
+    		<div class="d-flex justify-content-center" style="gap: 2rem;">
 			<?php
 					$hasil= $this->db->query("SELECT * from jasa");
 					foreach($hasil->result() as $jasa){
 					?>
-    			<div class="col-md-3 text-center ftco-animate">
+    			<div class="text-center ftco-animate">
       			<div class="menu-wrap">
       				<a href="#" class="menu-img img mb-4" style="background-image: url(<?php echo base_url(); ?>user/produk_dan_jasa/<?php echo $jasa->foto_jasa; ?>);"></a>
       				<div class="text">

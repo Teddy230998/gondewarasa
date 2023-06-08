@@ -34,7 +34,7 @@
           <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
-              <span class="subheading">Oky Wulandari,S.sn</span>
+              <span class="subheading">Oki Wulandari,S.sn</span>
               <p class="mb-4 mb-md-5">Pendiri Sanggar Gondewarasa</p>
             </div>
 
