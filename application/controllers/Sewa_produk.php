@@ -17,7 +17,7 @@ class Sewa_produk extends CI_Controller
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
-        
+
         if ($q <> '') {
             $config['base_url'] = base_url() . 'sewa_produk/index.html?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'sewa_produk/index.html?q=' . urlencode($q);
@@ -40,14 +40,14 @@ class Sewa_produk extends CI_Controller
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-            "container" => "admin/sewa_produk/sewa_produk_list", 
+            "container" => "admin/sewa_produk/sewa_produk_list",
             "footer" => "admin/footer",
             "nav" => "admin/nav",
         );
         $this->load->view('admin/template', $data);
     }
 
-    public function read($id) 
+    public function read($id)
     {
         //$row = $this->db->query("select * from pembayaran where id_sewa='$id'");
         $row = $this->pembayaran_model->get_by_id($id);
@@ -59,10 +59,10 @@ class Sewa_produk extends CI_Controller
                 'biaya' => $row->biaya,
                 'foto' => $row->foto,
                 'tgl_bayar' => $row->tgl_bayar,
-                "container" => "admin/sewa_produk/sewa_produk_read", 
+                "container" => "admin/sewa_produk/sewa_produk_read",
                 "footer" => "admin/footer",
                 "nav" => "admin/nav",
-	    );
+            );
             $this->load->view('admin/template', $data);
         } else {
             $this->session->set_flashdata('message', 'Maaf Pelanggan belum bayar');
@@ -74,49 +74,56 @@ class Sewa_produk extends CI_Controller
     //     $row = $this->Sewa_produk_model->get_by_id($id);
     //     if ($row) {
     //         $data = array(
-	// 	'id_sp' => $row->id_sp,
-	// 	'id_user' => $row->id_user,
-	// 	'id_produk' => $row->id_produk,
-	// 	'tgl_sewa' => $row->tgl_sewa,
-	// 	'biaya' => $row->biaya,
-	// 	'alamat' => $row->alamat,
-	// 	'tgl_acara' => $row->tgl_acara,
-	// 	'jml_pesan' => $row->jml_pesan,
-	//     );
+    // 	'id_sp' => $row->id_sp,
+    // 	'id_user' => $row->id_user,
+    // 	'id_produk' => $row->id_produk,
+    // 	'tgl_sewa' => $row->tgl_sewa,
+    // 	'biaya' => $row->biaya,
+    // 	'alamat' => $row->alamat,
+    // 	'tgl_acara' => $row->tgl_acara,
+    // 	'jml_pesan' => $row->jml_pesan,
+    //     );
     //         $this->load->view('sewa_produk/sewa_produk_read', $data);
     //     } else {
     //         $this->session->set_flashdata('message', 'Record Not Found');
     //         redirect(site_url('sewa_produk'));
     //     }
     // }
-    public function konfirmasi() 
+    public function konfirmasi()
     {
         $data = array(
-            'status' => $this->input->post('status',TRUE),
+            'status' => $this->input->post('status', TRUE),
         );
-        $this->pembayaran_model->update($this->input->post('id_pem', TRUE), $data);
-            $this->session->set_flashdata('message', 'Konfirmasi Record Success');
-            redirect(site_url('sewa_produk'));
+        $this->pembayaran_model->update($data, $this->input->post('id_pem', TRUE));
+        $this->session->set_flashdata('message', 'Konfirmasi Record Success');
+        redirect(site_url('sewa_produk'));
     }
 
-    public function create() 
+    public function notif($id)
+    {
+        $this->db->query('UPDATE pembayaran SET status_notif = 1 where id_pem="' . $id . '"');
+        $this->session->set_flashdata('message', 'Konfirmasi Record Success');
+        redirect(site_url('sewa_produk'));
+    }
+
+    public function create()
     {
         $data = array(
             'button' => 'Create',
             'action' => site_url('sewa_produk/create_action'),
-	    'id_sp' => set_value('id_sp'),
-	    'id_user' => set_value('id_user'),
-	    'id_produk' => set_value('id_produk'),
-	    'tgl_sewa' => set_value('tgl_sewa'),
-	    'biaya' => set_value('biaya'),
-	    'alamat' => set_value('alamat'),
-	    'tgl_acara' => set_value('tgl_acara'),
-	    'jml_pesan' => set_value('jml_pesan'),
-	);
+            'id_sp' => set_value('id_sp'),
+            'id_user' => set_value('id_user'),
+            'id_produk' => set_value('id_produk'),
+            'tgl_sewa' => set_value('tgl_sewa'),
+            'biaya' => set_value('biaya'),
+            'alamat' => set_value('alamat'),
+            'tgl_acara' => set_value('tgl_acara'),
+            'jml_pesan' => set_value('jml_pesan'),
+        );
         $this->load->view('sewa_produk/sewa_produk_form', $data);
     }
-    
-    public function create_action() 
+
+    public function create_action()
     {
         $this->_rules();
 
@@ -124,22 +131,22 @@ class Sewa_produk extends CI_Controller
             $this->create();
         } else {
             $data = array(
-                'id_user' => $this->input->post('id_user',TRUE),
-                'id_produk' => $this->input->post('id_produk',TRUE),
-                'tgl_sewa' => $this->input->post('tgl_sewa',TRUE),
-                'biaya' => $this->input->post('biaya',TRUE),
-                'alamat' => $this->input->post('alamat',TRUE),
-                'tgl_acara' => $this->input->post('tgl_acara',TRUE),
-                'jml_pesan' => $this->input->post('jml_pesan',TRUE),
-	    );
+                'id_user' => $this->input->post('id_user', TRUE),
+                'id_produk' => $this->input->post('id_produk', TRUE),
+                'tgl_sewa' => $this->input->post('tgl_sewa', TRUE),
+                'biaya' => $this->input->post('biaya', TRUE),
+                'alamat' => $this->input->post('alamat', TRUE),
+                'tgl_acara' => $this->input->post('tgl_acara', TRUE),
+                'jml_pesan' => $this->input->post('jml_pesan', TRUE),
+            );
 
             $this->Sewa_produk_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('sewa_produk'));
         }
     }
-    
-    public function update($id) 
+
+    public function update($id)
     {
         $row = $this->Sewa_produk_model->get_by_id($id);
 
@@ -155,15 +162,15 @@ class Sewa_produk extends CI_Controller
                 'alamat' => set_value('alamat', $row->alamat),
                 'tgl_acara' => set_value('tgl_acara', $row->tgl_acara),
                 'jml_pesan' => set_value('jml_pesan', $row->jml_pesan),
-	    );
+            );
             $this->load->view('sewa_produk/sewa_produk_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('sewa_produk'));
         }
     }
-    
-    public function update_action() 
+
+    public function update_action()
     {
         $this->_rules();
 
@@ -171,22 +178,22 @@ class Sewa_produk extends CI_Controller
             $this->update($this->input->post('id_sp', TRUE));
         } else {
             $data = array(
-		'id_user' => $this->input->post('id_user',TRUE),
-		'id_produk' => $this->input->post('id_produk',TRUE),
-		'tgl_sewa' => $this->input->post('tgl_sewa',TRUE),
-		'biaya' => $this->input->post('biaya',TRUE),
-		'alamat' => $this->input->post('alamat',TRUE),
-		'tgl_acara' => $this->input->post('tgl_acara',TRUE),
-		'jml_pesan' => $this->input->post('jml_pesan',TRUE),
-	    );
+                'id_user' => $this->input->post('id_user', TRUE),
+                'id_produk' => $this->input->post('id_produk', TRUE),
+                'tgl_sewa' => $this->input->post('tgl_sewa', TRUE),
+                'biaya' => $this->input->post('biaya', TRUE),
+                'alamat' => $this->input->post('alamat', TRUE),
+                'tgl_acara' => $this->input->post('tgl_acara', TRUE),
+                'jml_pesan' => $this->input->post('jml_pesan', TRUE),
+            );
 
             $this->Sewa_produk_model->update($this->input->post('id_sp', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
             redirect(site_url('sewa_produk'));
         }
     }
-    
-    public function delete($id) 
+
+    public function delete($id)
     {
         $row = $this->Sewa_produk_model->get_by_id($id);
 
@@ -200,20 +207,19 @@ class Sewa_produk extends CI_Controller
         }
     }
 
-    public function _rules() 
+    public function _rules()
     {
-	$this->form_validation->set_rules('id_user', 'id user', 'trim|required');
-	$this->form_validation->set_rules('id_produk', 'id produk', 'trim|required');
-	$this->form_validation->set_rules('tgl_sewa', 'tgl sewa', 'trim|required');
-	$this->form_validation->set_rules('biaya', 'biaya', 'trim|required');
-	$this->form_validation->set_rules('alamat', 'alamat', 'trim|required');
-	$this->form_validation->set_rules('tgl_acara', 'tgl acara', 'trim|required');
-	$this->form_validation->set_rules('jml_pesan', 'jml pesan', 'trim|required');
+        $this->form_validation->set_rules('id_user', 'id user', 'trim|required');
+        $this->form_validation->set_rules('id_produk', 'id produk', 'trim|required');
+        $this->form_validation->set_rules('tgl_sewa', 'tgl sewa', 'trim|required');
+        $this->form_validation->set_rules('biaya', 'biaya', 'trim|required');
+        $this->form_validation->set_rules('alamat', 'alamat', 'trim|required');
+        $this->form_validation->set_rules('tgl_acara', 'tgl acara', 'trim|required');
+        $this->form_validation->set_rules('jml_pesan', 'jml pesan', 'trim|required');
 
-	$this->form_validation->set_rules('id_sp', 'id_sp', 'trim');
-	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+        $this->form_validation->set_rules('id_sp', 'id_sp', 'trim');
+        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
-
 }
 
 /* End of file Sewa_produk.php */

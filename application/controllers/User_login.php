@@ -147,16 +147,14 @@ class User_login extends CI_Controller
 
     private function _uploadImage()
     {
-
-
-        // $liatdata=$this->db->query("SELECT * FROM pembayaran");
-        // $idsementara=$liatdata->num_rows()+1;
-        // $id_pembayaran="P$idsementara";
-        // $id_pembayaran=$this->id_pem = uniqid();
+        $liatdata = $this->db->query("SELECT * FROM pembayaran");
+        $idsementara = $liatdata->num_rows() + 1;
+        $id_pembayaran = "P$idsementara";
+        $id_pembayaran = $this->id_pem = uniqid();
 
         $config['upload_path']          = './user/bukti/';
         $config['allowed_types']        = 'gif|jpg|png';
-        $config['file_name']            = $this->id_pembayaran;
+        $config['file_name']            = $this->$id_pembayaran;
         $config['overwrite']            = true;
         $config['max_size']             = 1024; // 1MB
         // $config['max_width']            = 1024;
@@ -169,6 +167,8 @@ class User_login extends CI_Controller
         }
         return "default.jpg";
     }
+
+
     public function form_produk($id)
     {
         if (isset($_SESSION['email'])) {
